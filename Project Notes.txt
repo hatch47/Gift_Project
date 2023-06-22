@@ -1,0 +1,8 @@
+next:
+
+add checkbox type result to giftgroup table.
+
+
+
+in home, make groups expand showing all users in group, users can be clicked and show what gifts/amount has been used on them
+for one person group types, skip the show all users part

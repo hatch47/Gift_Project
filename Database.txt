@@ -1,0 +1,80 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema gift_project
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema gift_project
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `gift_project` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `gift_project` ;
+
+-- -----------------------------------------------------
+-- Table `gift_project`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gift_project`.`user` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `Email` VARCHAR(255) NULL DEFAULT NULL,
+  `User_Pass` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 9
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `gift_project`.`giftgroup`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gift_project`.`giftgroup` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `GroupName` VARCHAR(255) NULL DEFAULT NULL,
+  `OwnerID` INT NULL DEFAULT NULL,
+  `Group_Pass` VARCHAR(255) NULL DEFAULT NULL,
+  `GroupType` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE INDEX `GroupName` (`GroupName` ASC) VISIBLE,
+  INDEX `OwnerID` (`OwnerID` ASC) VISIBLE,
+  CONSTRAINT `giftgroup_ibfk_1`
+    FOREIGN KEY (`OwnerID`)
+    REFERENCES `gift_project`.`user` (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 39
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `gift_project`.`usergroup`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gift_project`.`usergroup` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `GroupID` INT NULL DEFAULT NULL,
+  `UserID` INT NULL DEFAULT NULL,
+  `nameForGroup` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `UserID` (`UserID` ASC) VISIBLE,
+  INDEX `GroupID` (`GroupID` ASC) VISIBLE,
+  CONSTRAINT `usergroup_ibfk_1`
+    FOREIGN KEY (`UserID`)
+    REFERENCES `gift_project`.`user` (`ID`),
+  CONSTRAINT `usergroup_ibfk_2`
+    FOREIGN KEY (`GroupID`)
+    REFERENCES `gift_project`.`giftgroup` (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 13
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
