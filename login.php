@@ -38,6 +38,7 @@ if (isset($_POST['submit'])) { // check if submit button was pressed
 <head>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
+    <link rel="icon" href="Logo.png" type="image/png">
     <title>Login</title>
 </head>
 <body>

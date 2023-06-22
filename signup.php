@@ -3,6 +3,7 @@
 <head>
 <link rel="stylesheet" href="styles.css">
 <script src="script.js"></script>
+<link rel="icon" href="Logo.png" type="image/png">
 <title>Sign Up</title>
 </head>
 <body>
