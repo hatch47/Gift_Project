@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = "";
 $username = "root";
 $password = "";
 $dbname = "gift_project";
